@@ -1,33 +1,33 @@
 // query the DOM for the form element
 const formElement = document.querySelector('form');
-console.log(formElement);
+// console.log(formElement);
 
 // add a submit event listener on the form
 formElement.addEventListener('submit', function (e) {
 
     // stop the page from refreshing when the form is submitted
     e.preventDefault();
+
     // log out the event object which is generated when the form is submitted:
-    console.log(e);
+    // console.log(e);
 
     // alert(`You've submitted this form!`);
 
     // query the DOM for the input element and check whether it's empty
     const inputElement = document.getElementById('toDoItem');
-    console.log(inputElement);
+    // console.log(inputElement);
 
     // only if the user has entered an actual task (AKA input is not empty):
-
     if (inputElement.value !== '') {
 
-        console.log('congrats on entering a value!')
+        // console.log('congrats on entering a value!')
 
         // grab the user's TO DO item from the form input
-        console.log(inputElement.value);
+        // console.log(inputElement.value);
 
         // create an li:
         const liElement = document.createElement('li');
-        console.log(liElement);
+        // console.log(liElement);
 
         // display TO DO on the page within an li element
         // include a checkbox icon within the li
@@ -35,7 +35,8 @@ formElement.addEventListener('submit', function (e) {
 
         // create an element that represents the text we have to add (our TO DO)
         const toDoContent = document.createTextNode(inputElement.value);
-        console.log(toDoContent);
+        // console.log(toDoContent);
+
         // and then append that text element to the li
         liElement.appendChild(toDoContent);
 
@@ -46,7 +47,9 @@ formElement.addEventListener('submit', function (e) {
         inputElement.value = '';
 
     } else {
+
         alert("Please do not leave input empty before submitting the form.")
+
     }
 
 })
@@ -63,7 +66,33 @@ formElement.addEventListener('submit', function (e) {
 
 
 // in order to attach a click event listener to the li's which do not exist on the page yet, we can use:
-// EVENT PROPAGATION to DELEGATE the click event to the ul!
+// EVENT PROPAGATION to DELEGATE the click event to the existing parent ul!
+const ul = document.querySelector('ul');
+
+ul.addEventListener('click', function (e) {
+
+    // // the this keyword represents the object which owns the code which is currently running
+    // // so in this context, "this" will give us back the ul consistently which is not what we want
+    // console.log(this);
+
+    // // log out the event object:
+    console.log(e);
+
+    // this will log the specific nested element within the ul that the click is occurring on
+    console.log(e.target);
+
+    // as long as we've clicked on the icon, then:
+    if (e.target.localName === 'i') {
+
+        console.log('Checkbox was clicked!')
+
+        // toggle between checked/unchecked (AKA done vs not done) on the target element:
+        e.target.classList.toggle('fa-square-check');
+        e.target.classList.toggle('fa-square');
+
+    }
+
+});
 
 
 
