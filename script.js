@@ -37,6 +37,9 @@ formElement.addEventListener('submit', function (e) {
         const toDoContent = document.createTextNode(inputElement.value);
         // console.log(toDoContent);
 
+        //clear content button
+        const clearButton = document.querySelector('button');
+
         // and then append that text element to the li
         liElement.appendChild(toDoContent);
 
